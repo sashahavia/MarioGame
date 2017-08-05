@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Final Project: Game Design</title>
+		<script type="text/javascript" src="coinLocations.json"></script>
+		<script type="text/javascript" src="mushroomLocations.json"></script>
+		<script src="game.js"></script>
+		<style>
+			#myCanvas{
+    			display: block;
+    			margin: 0 auto;
+    			border: 1px solid #000000;
+			}
+
+			#menu {
+				display: block;
+    			margin: 0 auto;
+				width: 55%;
+				padding: 20px;
+			}
+			
+
+			#button, #button2, #button3, #timerp, #totalp {
+    			background-color: #008CBA; /* Blue */
+    			border: none;
+    			color: white;
+    			padding: 15px 32px;
+    			text-align: center;
+    			text-decoration: none;
+    			display: inline-block;
+    			font-size: 16px;
+    			font-family: Helvetica;
+			}
+
+			#button2 {
+    			background-color: #4CAF50; /* Green */
+    		}
+
+    		#button3 {
+    			background-color: #f44336; /* Red */
+    		} 
+    		#timerp {
+    			background-color: #365ba0; /* Dark Blue */
+    		}
+
+    		#totalp {
+    			background-color: #008CBA; /*  Light Blue */
+    		}
+
+    		#help {
+    			width: 50%;
+    			padding: 50px 0;
+   				text-align: center;
+   				background-color: #237599;
+   				margin: 0 auto;
+    			margin-bottom:10px;
+    			color: white;
+				font-family: Helvetica;
+				font-size: 12;
+			}
+
+    		#footer {
+				padding-top: 20px;
+				text-align: center;
+			}
+
+			footer a {
+				text-decoration: none;
+				color: #333333;
+			}			
+		</style>
+	</head>
+	
+
+<body>
+	<div id="menu">
+		<input onclick="startGame()" type="button" id="button" value="Play"></input>
+		<input onclick="soundPlay()" type="button" id="button2" value="Sound on"></input>
+		<input onclick="helpInfo()" type="button" id="button3" value="Help"></input>
+		<p id="timerp">  Timer <span id="timer"></span></p>
+		<p id="totalp">  Total <span id="total"></span></p>
+	</div>
+
+	<div id="help" style="display: none;">
+		<h2>Game Instructions</h2>
+		<p>To jump - arrow up <br>
+			To walk right - arrow right<br>
+			To walk left - arrow left<br><br>
+			collect a mushroom get 5 points<br>
+			collect a coin get 1 point</p>
+	</div>
+	
+
+  	<canvas id="myCanvas" width="900" height="400" ></canvas> 
+
+
+	<footer id = "footer">
+		<h3><a href="http://webdevnerd.com/CISC3610/index.html">Main Page</a></h3>
+	</footer>
+	
+</body>
