@@ -7,17 +7,48 @@
 		<script type="text/javascript" src="mushroomLocations.json"></script>
 		<script src="game.js"></script>
 		<style>
+			*{
+				margin:0;
+				padding: 0;
+			}
+			html{
+				overflow-x: hidden;
+				overflow-y: hidden;
+			}
+			body{
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: 0 auto;				
+			}
+			div.canvas-container{
+				display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				margin-left: 1rem;
+			}
 			#myCanvas{
     			display: block;
-    			margin: 0 auto;
+    			margin: 2rem auto 0;
     			border: 1px solid #000000;
+				transform: scale(1)
+
 			}
+	
 
 			#menu {
-				display: block;
+				display: flex;
+				gap: 3rem;
+				justify-content: space-evenly;
+				align-items: center;
     			margin: 0 auto;
-				width: 55%;
+				width: 100%;
 				padding: 20px;
+				background: #333;
+				opacity: .9;
 			}
 			
 
@@ -31,7 +62,16 @@
     			display: inline-block;
     			font-size: 16px;
     			font-family: Helvetica;
+				opacity: .80;
+				transition: .5s ease;
 			}
+			#button:hover, #button2:hover, #button3:hover{
+				transition: .25s ease;
+				opacity: 1;
+				transform: scale(1.03);
+				cursor: pointer;
+			}
+		
 
 			#button2 {
     			background-color: #4CAF50; /* Green */
@@ -47,19 +87,70 @@
     		#totalp {
     			background-color: #008CBA; /*  Light Blue */
     		}
-
-    		#help {
-    			width: 50%;
-    			padding: 50px 0;
+			/*class created for toggle function - game.js: ln:334*/
+			.help-dormant{
+				
+				width: 1px;
+				height: 1px;
+				opacity: 0;
+				transition: .4s ease;
    				text-align: center;
    				background-color: #237599;
    				margin: 0 auto;
     			margin-bottom:10px;
     			color: white;
 				font-family: Helvetica;
-				font-size: 12;
+				font-size: 0px;
 			}
-
+			/*class created for toggle function - game.js: ln:334*/
+			.help-active{
+				width: 30%;
+				height: 200px;
+				transition: .3s ease;
+				padding: 1rem 0;
+   				text-align: center;
+   				background-color: #237599;
+   				margin: 1rem auto;
+    			color: white;
+				font-family: Helvetica;
+				opacity: 1;
+				font-size: 18px;
+			}
+			@media screen and (max-width: 800px){
+			.help-active{
+				width: 50%;
+			}
+			}
+			#nums{
+				display: flex;
+				gap: 2px;
+			}
+			.time-options{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: row;
+				margin: 0 1rem 0 .25rem;
+			}
+			.timer-flex{
+				display: flex;
+				flex-direction: row;
+			}
+			.option{
+				background: silver;
+				padding: .25px 2px;
+				transition: .3s ease;
+				border: none;
+			}
+			.option:hover{
+				background: silver;
+				padding: .25px 2px;
+				transition: .25s ease;
+				transform: scale(1.02);
+				cursor: pointer;
+				background: #333;
+				color: #fff;
+			}
     		#footer {
 				padding-top: 20px;
 				text-align: center;
@@ -75,14 +166,21 @@
 
 <body>
 	<div id="menu">
-		<input onclick="startGame()" type="button" id="button" value="Play"></input>
-		<input onclick="soundPlay()" type="button" id="button2" value="Sound on"></input>
-		<input onclick="helpInfo()" type="button" id="button3" value="Help"></input>
-		<p id="timerp">  Timer <span id="timer"></span></p>
+		<div class="btns">
+			<input onclick="startGame()" type="button" id="button" value="Play"></input>
+			<input onclick="soundPlay()" type="button" id="button2" value="Sound on"></input>
+			<input onclick="helpInfo()" type="button" id="button3" value="Help"></input>
+			</div>
+	<div id="nums">
+		<div class="timer-flex">
+			<div id="timerp">  Timer <span id="timer"></span>
+			</div>
+		</div>
 		<p id="totalp">  Total <span id="total"></span></p>
 	</div>
+	</div>
 
-	<div id="help" style="display: none;">
+	<div id="help" class="help-dormant">
 		<h2>Game Instructions</h2>
 		<p>To jump - arrow up <br>
 			To walk right - arrow right<br>
@@ -90,9 +188,9 @@
 			collect a mushroom get 5 points<br>
 			collect a coin get 1 point</p>
 	</div>
-	
-
-  	<canvas id="myCanvas" width="900" height="400" ></canvas> 
+	<div class="canvas-container">
+  	<canvas id="myCanvas" width="900" height="400"></canvas> 
+	</div>
 
 
 	<footer id = "footer">
