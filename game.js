@@ -12,7 +12,6 @@ var currentScreen = undefined;
 var muteAll = false;
 var jumping = false;
 var spot, spotM;
-
 var coinCatch = false;
 var firstCoin = true;
 var coinLoc = JSON.parse(coinLocations);
@@ -27,15 +26,19 @@ title.src = "images/startgame.jpg";
 
 var mario = new Image();
 mario.src = "images/mariostanding.png";
+mario.style="transition:.2s ease-in-out"
 
 var mario2 = new Image();
 mario2.src = "images/mariowalking.png";
+mario2.style="transition:.2s ease-in-out"
 
 var mario3 = new Image();
 mario3.src = "images/mariojumping.png";
+mario3.style="transition:.2s ease-in-out"
 
 var mario4 = new Image();
 mario4.src = "images/mariowalkingleft.png";
+mario.style="transition:.2s ease-in-out"
 
 var gameBg = new Image();
 gameBg.src = "images/mariobg.jpg";
@@ -56,8 +59,6 @@ var gameOverMusic = new Audio("sounds/gameover.mp3");
 var coinMusic = new Audio("sounds/collect_coin.wav");
 var jumpMusic = new Audio("sounds/jump.mp3");
 var runningOutOfTime = new Audio("sounds/runningoutoftime.wav");
-
-
 function soundPlay() {
 	sound = document.getElementById("button2");
     if (sound.value == "Sound on"){
@@ -118,7 +119,6 @@ function playGame() {
 	if(!muteAll) {
 		titleMusic.pause();
     	titleMusic.currentTime = 0;
-		gameMusic.loop = true;
     	gameMusic.play();
 	}
 	gameCount = 0;
@@ -283,7 +283,7 @@ function collectItems(){
 
 function timer(){
 	console.log("here T");
-	var timeleft = 30;
+	var timeleft = 60; //Time altered
     var timer = setInterval(function(){
     	timeleft--;
     	document.getElementById("timer").textContent = timeleft;
@@ -328,17 +328,8 @@ function gameOver() {
 	playButton.value = "Play";
 	currentScreen = "gameover";
 }
-
-function helpInfo() {
-	var help = document.getElementById("help");
-    if (help.style.display === 'none') {
-        help.style.display = 'block';
-    } else {
-        help.style.display = 'none';
-    }
+//Help function forked
+const helpInfo = () => {
+	let help = document.querySelector('.help-dormant');
+	help.classList.toggle('help-active')
 }
-
-
-
-
-
